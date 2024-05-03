@@ -1,50 +1,35 @@
 pipeline {
     agent any
-    
+
     environment {
-        // Define Docker registry credentials if needed
-        DOCKER_REGISTRY_CREDENTIALS = 'DockerhubCre'
-        
-        // Define Minikube configuration
-        //KUBECONFIG = "${HOME}/.kube/config"
+        DOCKER_IMAGE_NAME = 'omarelshrief/simple-web-app'
+        DOCKERFILE_PATH = 'Dockerfile'
     }
-    
+
     stages {
-        stage('Build Docker image') {
+        stage('Checkout') {
             steps {
-                // Build Docker image
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
                 script {
-                    docker.build('simple-web-app:latest', '.')
+                    // Build the Docker image
+                    docker.build(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
                 }
             }
         }
-        
-        stage('Push Docker image') {
-            /*when {
-                // Conditionally push Docker image only if DOCKER_REGISTRY_CREDENTIALS is defined
-                expression { env.DOCKER_REGISTRY_CREDENTIALS != null }
-            }*/
+
+        stage('Push Docker Image') {
             steps {
-                // Push Docker image to registry
                 script {
-                    docker.withRegistry('https://docker.io', env.DOCKER_REGISTRY_CREDENTIALS) {
-                        docker.image('omarelshrief/simple-web-app:latest').push('latest')
+                    // Push the Docker image to a registry (if needed)
+                    docker.withRegistry('https://index.docker.io/v1/', 'DockerhubCre') {
+                        docker.image(env.DOCKER_IMAGE_NAME).push('latest')
                     }
                 }
-            }
-        }
-        
-        stage('Deploy to Minikube') {
-            steps {
-                // Deploy to Minikube using Kubernetes plugin
-                kubernetesDeploy(
-                    configs: 'kubeconfig',
-                    kubeconfigId: 'miniCred', //'minikube',
-                    enableConfigSubstitution: true,
-                    showRawYaml: false,
-                    namespace: 'default',
-                    yaml: 'deployment.yaml' // Path to your Kubernetes deployment YAML file
-                )
             }
         }
     }
