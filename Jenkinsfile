@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
+                    docker.build(env.DOCKER_IMAGE_NAME, '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline')
                 }
             }
         }
