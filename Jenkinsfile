@@ -32,5 +32,15 @@ pipeline {
                 }
             }
         }
+
+	stage('Deploy to Minikube') {
+            steps {
+                script {
+                    // Deploy the Docker image to Minikube
+                    sh "kubectl apply -f deployment.yaml"
+                }
+            }
+        }
+
     }
 }
