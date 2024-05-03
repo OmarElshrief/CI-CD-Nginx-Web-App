@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'omarelshrief/simple-web-app'
-        DOCKERFILE_PATH = 'Dockerfile'
+        //DOCKERFILE_PATH = '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline'
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.buildx(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
+                    docker.build(env.DOCKER_IMAGE_NAME, '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline')
                 }
             }
         }
