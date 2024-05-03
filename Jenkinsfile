@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
+                    docker.buildx(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
                 }
             }
         }
