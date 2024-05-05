@@ -42,7 +42,7 @@ pipeline {
             }
         }
 
-        stage('Integration Test') {
+        /*stage('Integration Test') {
             steps {
                 script{
                     POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
@@ -50,19 +50,27 @@ pipeline {
                     sh 'curl -s http://localhost:8085' // Example test for content verification
                 }
             }
-        }
+        }*/
     }
 
     post {
         always {
-            // Send email notification for every build status
-            emailext (
-                to: 'omarmagdy045@gmail.com',
-                subject: "Jenkins Build Notification - ${currentBuild.fullDisplayName}",
-                body: """<p>Build Status: ${currentBuild.currentResult}</p>
-                         <p>Check console output at: ${env.BUILD_URL}</p>""",
-                mimeType: 'text/html'
-            )
+            // Integration test for nginx server deployment..
+            script {
+                try {
+
+                    POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
+                    sh "kubectl port-forward ${POD_NAME} 8085:80 &"
+                    sh 'curl -s http://localhost:8085' 
+
+                    echo 'Deployment Built successfully!'
+                } catch (Exception e) {
+
+                    currentBuild.result = 'FAILURE'
+                    echo 'Deployment failed, Try again!!'
+    
+                }
+            }
         }
     }
 }
