@@ -42,7 +42,7 @@ pipeline {
             }
         }
 
-        stage('Integration Test') {
+        /*stage('Integration Test') {
             steps {
                 script{
                     POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
@@ -50,10 +50,10 @@ pipeline {
                     sh 'curl -s http://localhost:8091' // Example test for content verification
                 }
             }
-        }
+        }*/
     }
 
-   /* post {
+   post {
         always {
             // Integration test for nginx server deployment..
             script {
@@ -72,5 +72,5 @@ pipeline {
                 }
             }
         }
-    }*/
+    }
 }
