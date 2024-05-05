@@ -37,8 +37,7 @@ pipeline {
             steps {
                 script {
                     // Deploy the Docker image to Minikube
-                    sh "kubectl apply -f deployment.yaml --validate=false"
-		    sh "kubectl apply -f service.yaml"
+                    sh "kubectl apply -f deployment.yaml"
                 }
             }
         }
