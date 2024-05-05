@@ -53,7 +53,7 @@ pipeline {
         }
     }
 
-   post {
+    post {
         always {
             // Integration test for nginx server deployment..
             script {
