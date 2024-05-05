@@ -46,7 +46,7 @@ pipeline {
             steps {
                 script{
                     POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
-                    sh "kubectl port-forward ${POD_NAME} 8085:80 &"
+                    sh "kubectl port-forward ${POD_NAME} 8090:80 &"
                     sh 'curl -s http://localhost:8085' // Example test for content verification
                 }
             }
