@@ -51,6 +51,18 @@ pipeline {
                 }
             }
         }
+    }
 
+    post {
+        always {
+            // Send email notification for every build status
+            emailext (
+                to: 'omarmagdy045@gmail.com',
+                subject: "Jenkins Build Notification - ${currentBuild.fullDisplayName}",
+                body: """<p>Build Status: ${currentBuild.currentResult}</p>
+                         <p>Check console output at: ${env.BUILD_URL}</p>""",
+                mimeType: 'text/html'
+            )
+        }
     }
 }
