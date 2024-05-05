@@ -57,7 +57,7 @@ pipeline {
         always {
             // Integration test for nginx server deployment..
             script {
-                POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
+                POD_NAME = (sh "script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true").trim()
                 sh "kubectl port-forward ${POD_NAME} 8097:80 &"
                 sh 'curl -s http://localhost:8097' // Example test for content verification 
 
