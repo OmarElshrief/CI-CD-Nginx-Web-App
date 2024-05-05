@@ -52,13 +52,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Integration test for nginx server deployment..
-            script {
-                sh "kubectl port-forward --namespace default --selector app=my-nginx 8091:80 --cancel"
-            }
-        }
-    }
 }
