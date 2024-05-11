@@ -45,11 +45,11 @@ Perform the following steps:
     ![Pipeline_item](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/Pipeline_item.png)
    
 1. Add github repo URL:   
-    ![github_url]([image_url](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/github_url.png))
+    ![github_url](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/github_url.png)
    
-1. Save and Build the Pipeline:
-   note :: change ENV Variables and port in Integration Test stage.  
-    ![pipeline_Run]([image_url](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/pipeline_Run.png))
+1. Save and Build the Pipeline:  
+   note :: change ENV Variables and port in Integration Test stage.    
+    ![pipeline_Run](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/pipeline_Run.png)
 
 ### In your Server:  
 Run :  
