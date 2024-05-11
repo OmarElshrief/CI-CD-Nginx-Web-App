@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'omarelshrief/simple-web-app'
-        //DOCKERFILE_PATH = '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline'
+        DOCKERFILE_PATH =  '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline'
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build(env.DOCKER_IMAGE_NAME, '-f /var/jenkins_home/workspace/CICD_pipeline/Dockerfile /var/jenkins_home/workspace/CICD_pipeline')
+                    docker.build(env.DOCKER_IMAGE_NAME, env.DOCKERFILE_PATH)
                 }
             }
         }
@@ -46,8 +46,8 @@ pipeline {
             steps {
                 script{
                     POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
-                    sh "kubectl port-forward ${POD_NAME} 8091:80 &"
-                    sh 'curl -s http://localhost:8091' // Example test for content verification
+                    sh "kubectl port-forward ${POD_NAME} 8099:80 &"
+                    sh 'curl -s http://localhost:8099' // Example test for content verification
                 }
             }
         }
