@@ -12,10 +12,10 @@ Please refer to the 'services' section about checking the behavior of this appli
 If you would like to develop a web application using Nginx, please feel free to use this sample.
 
 ## Services
-This sample provides 3 services: 
-    /n/t1- Jenkins follows GitHub repository for any updates.
-    /n/t2- Building Docker image for nginx server with the updates and pushing it to DockerHub.
-    /n/t3- Deployment of the web application using Minicube.
+This sample provides 3 services:   
+    1- Jenkins follows GitHub repository for any updates.  
+    2- Building Docker image for nginx server with the updates and pushing it to DockerHub.  
+    3- Deployment of the web application using Minicube.
 
 ## Install
 Perform the following steps:
