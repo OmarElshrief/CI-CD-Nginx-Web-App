@@ -42,33 +42,12 @@ pipeline {
             }
         }
 
-        /*stage('Integration Test') {
+        stage('Integration Test') {
             steps {
                 script{
                     POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
                     sh "kubectl port-forward ${POD_NAME} 8091:80 &"
                     sh 'curl -s http://localhost:8091' // Example test for content verification
-                }
-            }
-        }*/
-    }
-
-    post {
-        always {
-            // Integration test for nginx server deployment..
-            script {
-                try {
-
-                    POD_NAME = sh(script: "kubectl get pods -l app=my-nginx -o jsonpath='{.items[0].metadata.name}'", returnStdout: true).trim()
-                    sh "kubectl port-forward ${POD_NAME} 8091:80 &"
-                    sh 'curl -s http://localhost:8091' 
-
-                    echo 'Deployment Built successfully!'
-                } catch (Exception e) {
-
-                    currentBuild.result = 'FAILURE'
-                    echo 'Deployment failed, Try again!!'
-    
                 }
             }
         }
