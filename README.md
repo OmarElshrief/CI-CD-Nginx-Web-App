@@ -21,9 +21,6 @@ This sample provides 3 services:
 Perform the following steps:
 1. Download and install Docker.
 1. Download and install Minikube & Kubectl.
-    ```bash
-    go get -u github.com/ybkuroki/go-webapp-sample
-    ```
 
 ## Starting Server
 1. Run Jenkins Container:
@@ -38,21 +35,27 @@ Perform the following steps:
     #to make docker engine accessable
     sudo chmod 666 /var/run/docker.sock 
     ```
-1. Integrate Jenkins with Minikube using secret file in jenkins gui:
-    ![Alt text](image_url)
+1. Integrate Jenkins with Minikube using secret file in jenkins gui:  
+    ![Minikube_cloud](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/Minikube_cloud.png)
    
-1. Make you Credentials in Jenkins GUI:
-   ![Alt text](image_url)
+1. Make you Credentials in Jenkins GUI:  
+   ![Credentials](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/Credentials.png)
    
-1. Make new Pipeline Item: 
-    ![Alt text](image_url)
+1. Make new Pipeline Item:   
+    ![Pipeline_item](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/Pipeline_item.png)
    
-1. Add github repo URL: 
-    ![Alt text](image_url)
+1. Add github repo URL:   
+    ![github_url]([image_url](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/github_url.png))
    
 1. Save and Build the Pipeline:
-    ![Alt text](image_url)
+   note :: change ENV Variables and port in Integration Test stage.  
+    ![pipeline_Run]([image_url](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/pipeline_Run.png))
 
-### In your Server:
-Run :
-    ![Alt text](image_url)
+### In your Server:  
+Run :  
+    ![kubectl_Run](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/kubectl_Run.png)
+
+### Congratulations your app up and running!  
+Run:  
+    ![web_page](https://github.com/OmarElshrief/simple-web-app/blob/main/screenshots/web_Page.png)
+
